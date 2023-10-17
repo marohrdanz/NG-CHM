@@ -23,5 +23,5 @@ jobs:
           echo "mary was here"
           echo "git commit: ${{ env.GIT_COMMIT }}"
           echo "git latest tag: ${{ env.GIT_LATEST_TAG}}"
-          echo "github.event: ${{ github.event }}"
+          echo "github.event_name: ${{ github.event_name }}"
 
