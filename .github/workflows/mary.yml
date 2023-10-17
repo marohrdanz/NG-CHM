@@ -10,7 +10,7 @@ on:
 jobs:
   make_build_tag:
     runs-on: ubuntu-22.04
-    if: github.event.action != "release"
+    if: github.event.action != 'release'
     steps:
       - name: Get short commit hash
         run: echo "GIT_COMMIT=`echo ${{ github.sha }} | cut -c1-8`" >> $GITHUB_ENV
