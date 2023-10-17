@@ -1,4 +1,8 @@
 ## ## just for quick testing ## on: push: branches: fork-buildargs
+on:
+  push:
+    branches:
+      fork-buildargs
   release:
     types: [published]
   workflow_dispatch:
