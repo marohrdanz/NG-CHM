@@ -11,10 +11,11 @@ on:
 jobs:
   make_build_tag:
     runs-on: ubuntu-22.04
-    env:
-      GIT_COMMIT: ${{ github.sha }}
-      GIT_LATEST_TAG: ${{ github.ref }}
     steps:
+      - name: Get short commit hash
+        run: echo "GIT_COMMIT=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+      - name: Get tag
+        run: echo "GIT_LATEST_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
       - name: Creating Build Number Tag
         run: |
           echo "mary was here"
