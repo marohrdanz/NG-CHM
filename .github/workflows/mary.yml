@@ -10,7 +10,7 @@ on:
 jobs:
   make_build_tag:
     runs-on: ubuntu-22.04
-    if: github.event.action != 'release'
+    if: github.event_name != 'release'
     steps:
       - name: Get short commit hash
         run: echo "GIT_COMMIT=`echo ${{ github.sha }} | cut -c1-8`" >> $GITHUB_ENV
@@ -27,7 +27,7 @@ jobs:
     steps:
       - name: always run
         run: |
-          echo "mary was here...this WAS a release"
+          echo "mary was here...this job is always run"
           echo "git commit: ${{ env.GIT_COMMIT }}"
           echo "git latest tag: ${{ env.GIT_LATEST_TAG}}"
           echo "github.event_name: ${{ github.event_name }}"
