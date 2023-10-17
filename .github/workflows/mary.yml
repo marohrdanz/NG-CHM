@@ -1,11 +1,4 @@
-##
-## just for quick testing
-##
-
-on:
-  push:
-    branches:
-      fork-buildargs
+## ## just for quick testing ## on: push: branches: fork-buildargs
   release:
     types: [published]
   workflow_dispatch:
@@ -13,6 +6,7 @@ on:
 jobs:
   make_build_tag:
     runs-on: ubuntu-22.04
+    if: github.event.action != "release"
     steps:
       - name: Get short commit hash
         run: echo "GIT_COMMIT=`echo ${{ github.sha }} | cut -c1-8`" >> $GITHUB_ENV
@@ -20,8 +14,16 @@ jobs:
         run: echo "GIT_LATEST_TAG=${{ github.ref_name }}" >> $GITHUB_ENV
       - name: Creating Build Number Tag
         run: |
-          echo "mary was here"
+          echo "mary was here...this was NOT a release"
           echo "git commit: ${{ env.GIT_COMMIT }}"
           echo "git latest tag: ${{ env.GIT_LATEST_TAG}}"
           echo "github.event_name: ${{ github.event_name }}"
-
+  push_the_thing:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: always run
+        run: |
+          echo "mary was here...this WAS a release"
+          echo "git commit: ${{ env.GIT_COMMIT }}"
+          echo "git latest tag: ${{ env.GIT_LATEST_TAG}}"
+          echo "github.event_name: ${{ github.event_name }}"
