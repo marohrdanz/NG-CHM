@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Get short commit hash
-        run: echo "GIT_COMMIT=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+        run: echo "GIT_COMMIT=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
       - name: Get tag
-        run: echo "GIT_LATEST_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
+        run: echo "GIT_LATEST_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
       - name: Creating Build Number Tag
         run: |
           echo "mary was here"
