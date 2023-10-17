@@ -81,7 +81,7 @@ jobs:
     strategy:
       max-parallel: 1
     env:
-      Artifacts_REPOSITORY: "MD-Anderson-Bioinformatics/NG-CHM-Artifacts"
+      Artifacts_REPOSITORY: "marohrdanz/NG-CHM-Artifacts"
       Artifacts_BRANCH: "main"
       JAVA_VERSION: 11
     steps:
