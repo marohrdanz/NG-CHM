@@ -1,36 +1,5 @@
 ##
-## GitHub Workflow of 2 sequential jobs:
-##
-## 1. make_build_tag
-##
-##     Adds a incremental build tag to the repo based on:
-##
-##      - Version number in CompatibilityManager.js
-##      - Existing '-build-' tags in repo
-##
-##     For example, if there are exiting tags in the repo:
-##
-##      - 2.22.1-build-4
-##      - 2.21.0-build-3
-##      - 2.20.1-build-2
-##
-##      and the version from CompatibilityManager.js is '2.22.1', the new tag
-##      will be: 2.22.1-build-5.
-##
-## 2. build_artifacts
-##
-##     Builds all artifacts from Dockerfile and checks them into the 'NG-CHM-Artifacts'
-##     repo with the same tag as the build tag from the first job.
-##
-##     Artifacts built:
-##
-##     - ShaidyMapGen.jar
-##     - GalaxyMapGen.jar
-##     - GUIBuilderMapGen.jar
-##     - ngchmWidget-min.js
-##     - ngchmEmbed-min.js
-##     - WebContent/ngChmApp.html
-##     - WebContent/server.app (directory)
+## just for quick testing
 ##
 
 on:
@@ -42,8 +11,9 @@ on:
 jobs:
   make_build_tag:
     runs-on: ubuntu-22.04
-    name: Creating Build Number Tag
-    run: |
-       echo "mary was here"
+    steps:
+      - name: Creating Build Number Tag
+        run: |
+          echo "mary was here"
 
 
