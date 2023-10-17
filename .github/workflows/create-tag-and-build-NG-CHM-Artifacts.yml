@@ -37,10 +37,13 @@ on:
   push:
     branches:
       main
+  release:
+    types: [published]
   workflow_dispatch:
 
 jobs:
   make_build_tag:
+    if: github.event_name != 'release'
     runs-on: ubuntu-22.04
     name: Creating Build Number Tag
     strategy:
