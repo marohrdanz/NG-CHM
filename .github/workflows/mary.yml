@@ -11,9 +11,13 @@ on:
 jobs:
   make_build_tag:
     runs-on: ubuntu-22.04
+    env:
+      GIT_COMMIT: ${{ github.sha }}
+      GIT_LATEST_TAG: ${{ github.ref }}
     steps:
       - name: Creating Build Number Tag
         run: |
           echo "mary was here"
-
+          echo "git commit: ${{ env.GIT_COMMIT }}"
+          echo "git latest tag: ${{ env.GIT_LATEST_TAG}}"
 
