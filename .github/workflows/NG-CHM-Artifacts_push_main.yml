@@ -86,7 +86,7 @@ jobs:
     steps:
       - name: Make git info available for ant build
         run: |
-          echo "GIT_COMMIT=`echo ${{ github.sha }} | cut -c1-8`" >> $GITHUB_ENV
+          echo "GIT_COMMIT=`echo ${{ github.sha }} | cut -c1-7`" >> $GITHUB_ENV
           echo "GIT_LATEST_TAG=${{ needs.make_build_tag.outputs.tag_name }}" >> $GITHUB_ENV
       - name: Checkout build tag
         uses: actions/checkout@v3

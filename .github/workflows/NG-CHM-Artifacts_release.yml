@@ -38,7 +38,7 @@ jobs:
           ref: ${{ github.sha }}
       - name: Make git info available for ant build
         run: |
-          echo "GIT_COMMIT=`echo ${{ github.sha }} | cut -c1-8`" >> $GITHUB_ENV
+          echo "GIT_COMMIT=`echo ${{ github.sha }} | cut -c1-7`" >> $GITHUB_ENV
           echo "GIT_LATEST_TAG=${{ github.ref_name }}" >> $GITHUB_ENV
       # https://github.com/marohrdanz/extract-version-from-file
       # Output from this step is version from CompatibilityManager as 'version_number'.
