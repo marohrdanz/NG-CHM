@@ -75,7 +75,7 @@ jobs:
       tag_name: ${{ steps.make_tag.outputs.tag_name }}
   build_artifacts:
     runs-on: ubuntu-latest
-    name: Build artifacts and push to NG-CHM-Artifacts
+    name: Build and push to NG-CHM-Artifacts
     needs: make_build_tag
     strategy:
       max-parallel: 1

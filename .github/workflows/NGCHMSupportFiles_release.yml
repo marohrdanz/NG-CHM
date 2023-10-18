@@ -19,11 +19,16 @@ on:
 jobs:
   Build-ShaidyMapGen-and-ngchmWdiget-min:
     runs-on: ubuntu-22.04
+    name: Build and create NGCHMSupportFiles release
     env:
       NGCHMSupportFiles_REPOSITORY: '${{ github.repository_owner }}/NGCHMSupportFiles'
       NGCHMSupportFiles_BRANCH: 'main'
       JAVA_VERSION: 11
     steps:
+      - name: Checkout commit
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.sha }}
       - name: Make git info available for ant build
         run: |
           echo "GIT_COMMIT=`echo ${{ github.sha }} | cut -c1-8`" >> $GITHUB_ENV
