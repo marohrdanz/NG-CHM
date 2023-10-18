@@ -1,7 +1,9 @@
 ##
-## GitHub Workflow of 2 sequential jobs:
+##  Create build tag, build artifacts and push to NG-CHM-Artifacts triggered by push to main
 ##
-## 1. make_build_tag
+##  This workflow has two sequential jobs:
+##
+##  1. make_build_tag
 ##
 ##     Adds a incremental build tag to the repo based on:
 ##
@@ -17,7 +19,7 @@
 ##      and the version from CompatibilityManager.js is '2.22.1', the new tag
 ##      will be: 2.22.1-build-5.
 ##
-## 2. build_artifacts
+##  2. build_artifacts
 ##
 ##     Builds all artifacts from Dockerfile and checks them into the 'NG-CHM-Artifacts'
 ##     repo with the same tag as the build tag from the first job.
@@ -38,13 +40,10 @@ on:
   push:
     branches:
       main
-  release:
-    types: [published]
   workflow_dispatch:
 
 jobs:
   make_build_tag:
-    if: github.event_name != 'release'
     runs-on: ubuntu-22.04
     name: Creating Build Number Tag
     strategy:
@@ -82,13 +81,13 @@ jobs:
     strategy:
       max-parallel: 1
     env:
-      Artifacts_REPOSITORY: "marohrdanz/NG-CHM-Artifacts"
+      Artifacts_REPOSITORY: "${{ github.repository_owner }}/NG-CHM-Artifacts"
       Artifacts_BRANCH: "main"
       JAVA_VERSION: 11
     steps:
-      - name: Add short git commit hash to ENVs list
+      - name: Add short git commit hash to ENVs list for ant build
         run: echo "GIT_COMMIT=`echo ${{ github.sha }} | cut -c1-8`" >> $GITHUB_ENV
-      - name: Add tag name to ENVs list
+      - name: Add tag name to ENVs list for ant build
         run: echo "GIT_LATEST_TAG=${{ github.ref_name }}" >> $GITHUB_ENV
       - name: Checkout Tag Created In "Creating Build Number Tag" Job
         uses: actions/checkout@v3
