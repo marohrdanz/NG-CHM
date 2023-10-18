@@ -15,7 +15,7 @@
 ##     - WebContent/server.app (directory)
 ##
 
-name: Build and push to NG-CHM-Artifacts
+name: NG-CHM-Artifacts release
 on:
   release:
     types: [published]
@@ -24,7 +24,7 @@ on:
 jobs:
   build_artifacts:
     runs-on: ubuntu-latest
-    name: Build and create NG-CHM-Artifacts release
+    name: NG-CHM-Artifacts release
     strategy:
       max-parallel: 1
     env:
@@ -109,9 +109,9 @@ jobs:
         with:
           token: ${{ secrets.DQS_DEV_BCB_ACTIONS_TOKEN }}
           body: "Version ${{ steps.get_version_number.outputs.version_number }}"
-          repository: ${{ env.NGCHMSupportFiles_REPOSITORY }}
+          repository: ${{ env.Artifacts_REPOSITORY }}
       - name: Create notice of success 
         run: |
-          echo "::notice::Created release ${{ steps.get_version_number.outputs.version_number }} in ${{ env.NGCHMSupportFiles_REPOSITORY }}"
+          echo "::notice::Created release ${{ steps.get_version_number.outputs.version_number }} in ${{ env.Artifacts_REPOSITORY }}"
 
 

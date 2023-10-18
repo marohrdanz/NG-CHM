@@ -10,7 +10,7 @@
 ##     - ngchmWidget-min.js
 ##
 
-name: Build and push to NGCHMSupportFiles
+name: NGCHMSupportFiles release
 on:
   release:
     types: [published]
@@ -19,7 +19,7 @@ on:
 jobs:
   Build-ShaidyMapGen-and-ngchmWdiget-min:
     runs-on: ubuntu-22.04
-    name: Build and create NGCHMSupportFiles release
+    name: NGCHMSupportFiles release
     env:
       NGCHMSupportFiles_REPOSITORY: '${{ github.repository_owner }}/NGCHMSupportFiles'
       NGCHMSupportFiles_BRANCH: 'main'
