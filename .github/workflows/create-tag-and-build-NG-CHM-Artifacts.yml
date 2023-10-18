@@ -33,6 +33,7 @@
 ##     - WebContent/server.app (directory)
 ##
 
+name: Tag, build and push to NG-CHM-Artifacts
 on:
   push:
     branches:
