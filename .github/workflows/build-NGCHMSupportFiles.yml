@@ -3,7 +3,7 @@
 ##  triggered by publishing a release
 ##
 
-name: Build artifacts for NGCHMSupportFiles
+name: Build and push to NGCHMSupportFiles
 on:
   release:
     types: [published]
