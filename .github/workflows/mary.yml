@@ -24,3 +24,4 @@ jobs:
           echo "github.ref_name: ${{ github.ref_name }}"
           echo "github.repository_owner ${{ github.repository_owner }}"
           echo "github.event_name: ${{ github.event_name }}"
+          echo "::notice::Testing these envs in a notice ${{ env.GIT_COMMIT }}"
