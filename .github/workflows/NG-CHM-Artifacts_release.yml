@@ -36,10 +36,6 @@ jobs:
         run: echo "GIT_COMMIT=`echo ${{ github.sha }} | cut -c1-8`" >> $GITHUB_ENV
       - name: Add tag name to ENVs list for ant build
         run: echo "GIT_LATEST_TAG=${{ github.ref_name }}" >> $GITHUB_ENV
-      #- name: Check out release tag
-      #  uses: actions/checkout@v3
-      #  with:
-      #    ref: ${{ github.ref_name }}
       # https://github.com/marohrdanz/extract-version-from-file
       # Output from this step is version from CompatibilityManager as 'version_number'.
       - name: Get version number
@@ -110,4 +106,8 @@ jobs:
           token: ${{ secrets.DQS_DEV_BCB_ACTIONS_TOKEN }}
           body: "Version ${{ steps.get_version_number.outputs.version_number }}"
           repository: ${{ env.NGCHMSupportFiles_REPOSITORY }}
+      - name: Create notice of success 
+        run: |
+          echo "::notice::Created release ${{ steps.get_version_number.outputs.version_number }} in ${{ env.NGCHMSupportFiles_REPOSITORY }}"
+
 
