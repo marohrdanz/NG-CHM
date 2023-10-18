@@ -36,6 +36,7 @@
 ##
 
 name: NG-CHM-Artifacts tag
+concurrency: artifacts
 on:
   push:
     branches:
