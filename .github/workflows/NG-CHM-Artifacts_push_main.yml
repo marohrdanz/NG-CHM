@@ -45,7 +45,7 @@ on:
 jobs:
   make_build_tag:
     runs-on: ubuntu-22.04
-    name: Build number tag
+    name: Tag w/ build number
     strategy:
       max-parallel: 1
     steps:
