@@ -149,4 +149,5 @@ jobs:
           git push origin ${{ env.Artifacts_BRANCH }}
           git tag ${{ needs.make_build_tag.outputs.tag_name }}
           git push origin ${{ needs.make_build_tag.outputs.tag_name }}
+          echo "::notice::Created tag ${{ needs.make_build_tag.outputs.tag_name }} in ${{ env.Artifacts_REPOSITORY }}"
 
