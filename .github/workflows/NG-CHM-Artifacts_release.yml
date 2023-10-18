@@ -32,10 +32,10 @@ jobs:
       Artifacts_BRANCH: "main"
       JAVA_VERSION: 11
     steps:
-      - name: Add short git commit hash to ENVs list for ant build
-        run: echo "GIT_COMMIT=`echo ${{ github.sha }} | cut -c1-8`" >> $GITHUB_ENV
-      - name: Add tag name to ENVs list for ant build
-        run: echo "GIT_LATEST_TAG=${{ github.ref_name }}" >> $GITHUB_ENV
+      - name: Make git info available for ant build
+        run: |
+          echo "GIT_COMMIT=`echo ${{ github.sha }} | cut -c1-8`" >> $GITHUB_ENV
+          echo "GIT_LATEST_TAG=${{ github.ref_name }}" >> $GITHUB_ENV
       # https://github.com/marohrdanz/extract-version-from-file
       # Output from this step is version from CompatibilityManager as 'version_number'.
       - name: Get version number
@@ -65,14 +65,14 @@ jobs:
         run: |
           cd NGCHM
           ant -f build_ngchmApp.xml
-      - name: Check out Artifacts repo
+      - name: Check out NG-CHM-Artifacts repo
         uses: actions/checkout@v3
         with:
           repository: ${{ env.Artifacts_REPOSITORY }}
           token: ${{ secrets.DQS_DEV_BCB_ACTIONS_TOKEN }}
           ref: ${{ env.Artifacts_BRANCH }}
           path: "./Artifacts"
-      - name: Copy artifacts
+      - name: Copy artifacts to NG-CHM-Artifacts
         run: |
           cd Artifacts
           cp ../NGCHM/ShaidyMapGen.jar shaidymapgen/
@@ -90,7 +90,7 @@ jobs:
           cp -r ../NGCHM/WebContent/ viewer.source/
           echo "Build tag: ${{ github.ref_name }}" > viewer.source/WebContent/build_version.txt
           echo "Git hash: ${{ github.sha }}" >> viewer.source/WebContent/build_version.txt
-      - name: Commit, tag, and push to Artifacts repo
+      - name: Commit, tag, and push to NG-CHM-Artifacts repo
         run: |
           cd Artifacts
           git config --local user.email "actions@github.com"
