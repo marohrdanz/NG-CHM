@@ -35,7 +35,7 @@
 ##     - WebContent/server.app (directory)
 ##
 
-name: NG-CHM-Artifacts tag
+name: NG-CHM-Artifacts build only
 ## concurrency group prevents race condition with NG-CHM-Artifacts_release.yml
 concurrency: artifacts
 on:
