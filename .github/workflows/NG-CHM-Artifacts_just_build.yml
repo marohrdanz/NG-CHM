@@ -52,7 +52,7 @@ jobs:
       max-parallel: 1
     steps:
       - name: Checkout commit
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.4
         with:
           ref: ${{ github.sha }}
       # https://github.com/marohrdanz/extract-version-from-file
@@ -82,7 +82,7 @@ jobs:
           echo "GIT_COMMIT=`echo ${{ github.sha }} | cut -c1-7`" >> $GITHUB_ENV
           echo "GIT_LATEST_TAG=${{ needs.make_build_tag.outputs.tag_name }}" >> $GITHUB_ENV
       - name: Checkout build tag
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.4
         with:
           ref: ${{ needs.make_build_tag.outputs.tag_name }}
       - name: Set up JDK for java ${{ env.JAVA_VERSION }}

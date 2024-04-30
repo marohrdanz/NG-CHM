@@ -26,7 +26,7 @@ jobs:
       JAVA_VERSION: 11
     steps:
       - name: Checkout commit
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.4
         with:
           ref: ${{ github.sha }}
       - name: Make git info available for ant build
@@ -55,7 +55,7 @@ jobs:
           cd NGCHM
           ant -f build_ngchmApp.xml
       - name: Check out NGCHMSupportFiles repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.4
         with:
           repository: ${{ env.NGCHMSupportFiles_REPOSITORY }}
           token: ${{ secrets.DQS_DEV_BCB_ACTIONS_TOKEN }}
