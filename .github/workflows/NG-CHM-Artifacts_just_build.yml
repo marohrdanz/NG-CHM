@@ -59,7 +59,7 @@ jobs:
       # Output from this step is version from CompatibilityManager as 'version_number'.
       - name: Get version number
         id: get_version_number
-        uses: marohrdanz/extract-version-from-file@v1.0.0
+        uses: marohrdanz/extract-version-from-file@v1.0.1
         with:
           file_path: 'NGCHM/WebContent/javascript/CompatibilityManager.js'
           start_string: '  CM.version = '
