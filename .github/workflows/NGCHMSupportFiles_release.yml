@@ -84,7 +84,7 @@ jobs:
           git commit -m "Update for NG-CHM Release ${{ steps.get_version_number.outputs.version_number }}"
           git push origin ${{ env.NGCHMSupportFiles_BRANCH }}
       - name: Create a release in NGCHMSupportFiles repo
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2.0.4
         with:
           token: ${{ secrets.DQS_DEV_BCB_ACTIONS_TOKEN }}
           body: "Version ${{ steps.get_version_number.outputs.version_number }}"
