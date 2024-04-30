@@ -62,7 +62,7 @@ jobs:
         uses: marohrdanz/extract-version-from-file@main
         with:
           file_path: 'NGCHM/WebContent/javascript/CompatibilityManager.js'
-          search_string: '  CM.version = '
+          search_string: 'CM.version = '
       # https://github.com/marohrdanz/build-number-tag
       # Output from this step is tag name as 'build_number'.
       - name: Create build tag

@@ -40,7 +40,7 @@ jobs:
         uses: marohrdanz/extract-version-from-file@v1.0.1
         with:
           file_path: 'NGCHM/WebContent/javascript/CompatibilityManager.js'
-          search_string: '  CM.version = '
+          search_string: 'CM.version = '
       - name: Set up JDK for java ${{ env.JAVA_VERSION }}
         uses: actions/setup-java@v4.2.1
         with:
