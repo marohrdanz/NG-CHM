@@ -59,7 +59,7 @@ jobs:
       # Output from this step is version from CompatibilityManager as 'version_number'.
       - name: Get version number
         id: get_version_number
-        uses: marohrdanz/extract-version-from-file@v1.0.1
+        uses: marohrdanz/extract-version-from-file@main
         with:
           file_path: 'NGCHM/WebContent/javascript/CompatibilityManager.js'
           start_string: '  CM.version = '
@@ -67,7 +67,7 @@ jobs:
       # Output from this step is tag name as 'build_number'.
       - name: Create build tag
         id: make_tag
-        uses: marohrdanz/build-number-tag@v1.1.1
+        uses: marohrdanz/build-number-tag@main
         with:
           token: ${{ secrets.DQS_DEV_BCB_ACTIONS_TOKEN }}
           prefix: '-build-'
