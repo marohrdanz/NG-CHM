@@ -125,7 +125,7 @@ jobs:
       - name: Copy artifacts to NG-CHM-Artifacts
         run: |
           cd Artifacts
-          git rm view.build/server.app/javascript/*.js
+          git rm viewer.build/server.app/javascript/*.js
           cp ../NGCHM/ShaidyMapGen.jar shaidymapgen/
           cp ../NGCHM/GalaxyMapGen.jar galaxymapgen/
           cp ../NGCHM/GUIBuilderMapGen.jar guibuildermapgen/
