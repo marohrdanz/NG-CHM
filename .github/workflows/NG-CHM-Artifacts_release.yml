@@ -99,6 +99,8 @@ jobs:
       - name: Commit, tag, and push to NG-CHM-Artifacts repo
         run: |
           cd Artifacts
+          # remove old versions of minified javascript files
+          git rm viewer.build/server.app/javascript/*.js
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add .

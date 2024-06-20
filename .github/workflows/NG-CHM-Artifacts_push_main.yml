@@ -125,6 +125,7 @@ jobs:
       - name: Copy artifacts to NG-CHM-Artifacts
         run: |
           cd Artifacts
+          # remove old versions of minified javascript files
           git rm viewer.build/server.app/javascript/*.js
           cp ../NGCHM/ShaidyMapGen.jar shaidymapgen/
           cp ../NGCHM/GalaxyMapGen.jar galaxymapgen/
