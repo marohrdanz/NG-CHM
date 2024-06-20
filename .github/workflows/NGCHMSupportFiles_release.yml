@@ -72,8 +72,8 @@ jobs:
       - name: Set up R enviornment
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          packages: |
-            knitr
+          extra-packages: local::.
+          packages: knitr
           working-directory: NGCHMSupportFiles
       - name: Verify NGCHMSupportFile R build
         run: |
