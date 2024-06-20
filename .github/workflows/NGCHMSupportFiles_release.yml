@@ -74,6 +74,7 @@ jobs:
         with:
           packages: |
             knitr
+          working-directory: NGCHMSupportFiles
       - name: Verify NGCHMSupportFile R build
         run: |
           cd NGCHMSupportFiles
