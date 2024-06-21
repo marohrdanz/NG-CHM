@@ -83,10 +83,13 @@ jobs:
         run: |
           cd Artifacts
           # remove old versions of minified javascript files
-          git rm viewer.build/server.app/javascript/*.js
+          #git rm viewer.build/server.app/javascript/*.js
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add .
+          ls -lrth .
+          ls -lrth viewer.build/server.app
+          ls -lrth viewer.build/server.app/javascript
           git commit -m "Build from NG-CHM tag ${{ github.ref_name }}"
           git push origin ${{ env.Artifacts_BRANCH }}
           git tag ${{ github.ref_name }}
