@@ -50,6 +50,23 @@ jobs:
         with:
           file_path: 'NGCHM/WebContent/javascript/CompatibilityManager.js'
           search_string: 'CM.version = '
+      - name: Set up JDK for java ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4.2.1
+        with:
+          java-version: "${{ env.JAVA_VERSION }}"
+          distribution: 'temurin'
+      - name: Build ShaidyMapGen.jar
+        run: |
+          cd NGCHM
+          ant -f build_shaidyRmapgen.xml
+      - name: Build GalaxyMapGen.jar
+        run: |
+          cd NGCHM
+          ant -f build_galaxymapgen.xml
+      - name: Build GUIBuilderMapGen.jar
+        run: |
+          cd NGCHM
+          ant -f build_guibuildermapgen.xml
       - name: Build NG-CHM standalone files and server.app
         run: |
           cd NGCHM
@@ -64,18 +81,20 @@ jobs:
       - name: Copy artifacts to NG-CHM-Artifacts
         run: |
           cd Artifacts
-          #cp ../NGCHM/ShaidyMapGen.jar shaidymapgen/
-          #cp ../NGCHM/GalaxyMapGen.jar galaxymapgen/
-          #cp ../NGCHM/GUIBuilderMapGen.jar guibuildermapgen/
+          cp ../NGCHM/ShaidyMapGen.jar shaidymapgen/
+          cp ../NGCHM/GalaxyMapGen.jar galaxymapgen/
+          cp ../NGCHM/GUIBuilderMapGen.jar guibuildermapgen/
           cp ../NGCHM/ngchmWidget-min.js viewer.standalone/
           cp ../NGCHM/ngchmEmbed-min.js viewer.standalone/
           cp ../NGCHM/WebContent/ngChmApp.html viewer.standalone/
           echo "Build tag: ${{ github.ref_name }}" > viewer.standalone/build_version.txt
           echo "Git hash: ${{ github.sha }}" >> viewer.standalone/build_version.txt
+          # remove old versions of minified javascript files
           git rm viewer.build/server.app/javascript/*.js
           cp -r ../NGCHM/WebContent/server.app viewer.build/
           echo "Build tag: ${{ github.ref_name }}" > viewer.build/server.app/build_version.txt
           echo "Git hash: ${{ github.sha }}" >> viewer.build/server.app/build_version.txt
+          rm -rf ../NGCHM/WebContent/server.app
           cp -r ../NGCHM/WebContent/ viewer.source/
           echo "Build tag: ${{ github.ref_name }}" > viewer.source/WebContent/build_version.txt
           echo "Git hash: ${{ github.sha }}" >> viewer.source/WebContent/build_version.txt
@@ -83,13 +102,10 @@ jobs:
         run: |
           cd Artifacts
           # remove old versions of minified javascript files
-          #git rm viewer.build/server.app/javascript/*.js
+          git rm viewer.build/server.app/javascript/*.js
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add .
-          ls -lrth .
-          ls -lrth viewer.build/server.app
-          ls -lrth viewer.build/server.app/javascript
           git commit -m "Build from NG-CHM tag ${{ github.ref_name }}"
           git push origin ${{ env.Artifacts_BRANCH }}
           git tag ${{ github.ref_name }}
