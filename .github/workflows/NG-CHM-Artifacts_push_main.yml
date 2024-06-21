@@ -126,7 +126,7 @@ jobs:
         run: |
           cd Artifacts
           # remove old versions of minified javascript files
-          git rm viewer.build/server.app/javascript/*.js
+          #git rm viewer.build/server.app/javascript/*.js
           cp ../NGCHM/ShaidyMapGen.jar shaidymapgen/
           cp ../NGCHM/GalaxyMapGen.jar galaxymapgen/
           cp ../NGCHM/GUIBuilderMapGen.jar guibuildermapgen/
@@ -138,8 +138,8 @@ jobs:
           cp -r ../NGCHM/WebContent/server.app viewer.build/
           echo "Build tag: ${{ needs.make_build_tag.outputs.tag_name }}" > viewer.build/server.app/build_version.txt
           echo "Git hash: ${{ github.sha }}" >> viewer.build/server.app/build_version.txt
-          rm -rf ../NGCHM/WebContent/server.app
-          cp -r ../NGCHM/WebContent/viewer.source/
+          #git rm -rf ../NGCHM/WebContent/server.app
+          cp -r ../NGCHM/WebContent/ viewer.source/
           echo "Build tag: ${{ needs.make_build_tag.outputs.tag_name }}" > viewer.source/WebContent/build_version.txt
           echo "Git hash: ${{ github.sha }}" >> viewer.source/WebContent/build_version.txt
       - name: Commit, tag, and push to NG-CHM-Artifacts repo
@@ -148,7 +148,6 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add .
-          ls -lrth Artifacts/viewer.build/server.app/javascript
           git commit -m "Build from NG-CHM tag ${{ needs.make_build_tag.outputs.tag_name }}"
           git push origin ${{ env.Artifacts_BRANCH }}
           git tag ${{ needs.make_build_tag.outputs.tag_name }}
